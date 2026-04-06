@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -31,16 +31,19 @@ namespace Naidis_csharp
         {
             try
             {
-                string path =  @"..\..\..\Kuud.txt"; //@"..\..\..\Kuud.txt"
-                StreamWriter text = new StreamWriter(path, true); // true = lisa lõppu
-                Console.WriteLine("Sisesta mingi tekst: ");
-                string lause = Console.ReadLine();
-                text.WriteLine(lause);
-                text.Close();
-                using (StreamWriter sw = new StreamWriter(path, true))
+                while(true)
                 {
-                    sw.WriteLine("Midagi");
-                } // Fail suletakse automaatselt siin
+                    string path = @"..\..\..\Kuud.txt"; //@"..\..\..\Kuud.txt"
+                    StreamWriter text = new StreamWriter(path, true); // true = lisa lõppu
+                    Console.WriteLine("Sisesta mingi tekst: ");
+                    string lause = Console.ReadLine();
+                    text.WriteLine(lause);
+                    text.Close();
+                    using (StreamWriter sw = new StreamWriter(path, true))
+                    {
+                        sw.WriteLine("Midagi");
+                    } // Fail suletakse automaatselt siin
+                }
             }
             catch (Exception e)
             {
@@ -115,55 +118,66 @@ namespace Naidis_csharp
         }
         public static List<string> Listi_muutmine_kuvamine()
         {
-    
-            foreach (string k in kuude_list)
+            try
             {
-                Console.WriteLine(k);
+                while(true)
+                {
+
+                    foreach (string k in kuude_list)
+                    {
+                        Console.WriteLine(k);
+                    }
+
+                    Console.WriteLine("sisesta kuu kustutamiseks");
+
+                    string kuu = Console.ReadLine();
+                    kuude_list.Remove($"{kuu}");
+
+                    // Muuda esimest elementi
+                    if (kuude_list.Count > 0)
+                        kuude_list[0] = "Veeel kuuu";
+
+                    Console.WriteLine("--------------Kustutasime kuu-----------");
+
+                    foreach (string k in kuude_list)
+                    {
+                        Console.WriteLine(k);
+                    }
+                }
             }
-
-            Console.WriteLine("sisesta kuu kustutamiseks");
-           
-            string kuu = Console.ReadLine();
-            kuude_list.Remove($"{kuu}");
-
-            // Muuda esimest elementi
-            if (kuude_list.Count > 0)
-                kuude_list[0] = "Veeel kuuu";
-
-            Console.WriteLine("--------------Kustutasime kuu-----------");
-
-            foreach (string k in kuude_list)
+            catch(Exception e)
             {
-                Console.WriteLine(k);
+                Console.WriteLine(e);
             }
 
             return kuude_list;
         }
         public static void Otsing_nimekirjast()
         {
-            kuude_list = Ridade_lugemine_listiks("Kuud.txt");
-            Console.WriteLine("Sisesta kuu nimi, mida otsida:");
-            string otsitav = Console.ReadLine();
+            try
+            {
+                while(true)
+                {
+                    kuude_list = Ridade_lugemine_listiks("Kuud.txt");
+                    Console.WriteLine("Sisesta kuu nimi, mida otsida:");
+                    string otsitav = Console.ReadLine();
 
-            if (kuude_list.Contains(otsitav))
-                Console.WriteLine("Kuu " + otsitav + " on olemas.");
-            else
-                Console.WriteLine("Sellist kuud pole.");
+                    if (kuude_list.Contains(otsitav))
+                        Console.WriteLine("Kuu " + otsitav + " on olemas.");
+                    else
+                        Console.WriteLine("Sellist kuud pole.");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
         public static void Listi_salvestamine()
         {
             string path = @"..\..\..\Kuud.txt";
             File.WriteAllLines(path, kuude_list);
             Console.WriteLine("Andmed on salvestatud.");
-
         }
-
-
-
-
-
-
-
-
     }
 }
