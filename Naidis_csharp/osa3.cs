@@ -1,12 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-
 namespace Naidis_csharp
 {
     internal class osa3
@@ -15,6 +6,7 @@ namespace Naidis_csharp
 
         public static int[] GenereeriRuudud(int min, int max)
         {
+
 
             int N = rnd.Next(min, max);
             int M = rnd.Next(min, max);
@@ -52,87 +44,109 @@ namespace Naidis_csharp
         }
         public static Tuple<int, double, Inimene, Inimene> Statistika(List<Inimene> inimesed)
         {
-            int summa = inimesed.Sum(i=>i.Vanus);
+            int summa = inimesed.Sum(i => i.Vanus);
             double keskmine = inimesed.Average(i => i.Vanus);
             Inimene vanim = inimesed.OrderByDescending(i => i.Vanus).First();
             Inimene noorim = inimesed.OrderBy(i => i.Vanus).First();
             return Tuple.Create(summa, keskmine, vanim, noorim);
         }
-       
+
 
         public static void ostsElevantAra()
         {
-            string vastus;
-            do
+            try
             {
-                Console.WriteLine("Osts elevant ära");
-                vastus = Console.ReadLine().ToLower();
-
-            } while (vastus != "jah");
-
-            while (true)
-            {
-                Console.WriteLine("Osts elevant ära");
-                vastus = Console.ReadLine().ToLower();
-                if (vastus == "jah")
+                string vastus;
+                do
                 {
-                    Console.WriteLine("Oled ostnud elevandi!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Kõik nii rakivad, aga Osts elevant ära");
-                }
+                    Console.WriteLine("Osts elevant ära");
+                    vastus = Console.ReadLine().ToLower();
 
+                } while (vastus != "jah");
+
+                while (true)
+                {
+                    Console.WriteLine("Osts elevant ära");
+                    vastus = Console.ReadLine().ToLower();
+                    if (vastus == "jah")
+                    {
+                        Console.WriteLine("Oled ostnud elevandi!");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Kõik nii rakivad, aga Osts elevant ära");
+                    }
+
+                }
             }
-
-
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public static void arvumang()
         {
-           
-            int arv = rnd.Next(1, 101);
-            int katse = 0;
-            for (int i = 0; i < 5; i++)
+            try
             {
-                Console.Write("Arva ära number 1-100: ");
-                int arva = int.Parse(Console.ReadLine());
-                katse++;
-                if (arva > arv)
+                while (true)
                 {
-                    Console.WriteLine("Sinu number on väiksem");
-                }
-                else if (arva < arv)
-                {
-                    Console.WriteLine("Sinu number on suurem");
-                }
-                else
-                {
-                    Console.WriteLine($"Õige! Arvasid ära {katse} katsel.");
-                    break;
+                    int arv = rnd.Next(1, 101);
+                    int katse = 0;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Console.Write("Arva ära number 1-100: ");
+                        int arva = int.Parse(Console.ReadLine());
+                        katse++;
+                        if (arva > arv)
+                        {
+                            Console.WriteLine("Sinu number on väiksem");
+                        }
+                        else if (arva < arv)
+                        {
+                            Console.WriteLine("Sinu number on suurem");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Õige! Arvasid ära {katse} katsel.");
+                            break;
+                        }
+                    }
                 }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public static void SuurimNeliarv()
         {
-            Console.WriteLine("Sisesta neli arvu:");
-
-            double[] arvud = new double[4];
-            for (int i = 0; i < arvud.Length; i++)
+            try
             {
-
-                Console.Write($"Sisesta {i + 1}. arv: ");
-                int arvu = int.Parse(Console.ReadLine());
-
-
-                foreach (double arv in arvud)
+                while (true)
                 {
-                    string tulemus = string.Join(", ", arvud);
+                    Console.WriteLine("Sisesta neli arvu:");
+
+                    double[] arvud = new double[4];
+                    for (int i = 0; i < arvud.Length; i++)
+                    {
+
+                        Console.Write($"Sisesta {i + 1}. arv: ");
+                        int arvu = int.Parse(Console.ReadLine());
+
+
+                        foreach (double arv in arvud)
+                        {
+                            string tulemus = string.Join(", ", arvud);
+                        }
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
         public static int[,] GenereeriKorrutustabel(int ridadeArv, int veergudeArv)
@@ -152,39 +166,49 @@ namespace Naidis_csharp
 
         public static void ÕpilastegaMängimine(string[] nimed)
         {
-            
-            Console.Write("milleks:  ");
-            string nimi = Console.ReadLine();
-            nimed[2] = nimi;
-            nimed[5] = "Mati";
-            int i = 0;
-                while (i<nimed.Length)
+            try
             {
-                if (nimed[i].StartsWith("A"))
+                while (true)
                 {
-                    Console.WriteLine($"Tere, {nimed[i]}!");
+                    Console.Write("milleks:  ");
+                    string nimi = Console.ReadLine();
+                    nimed[2] = nimi;
+                    nimed[5] = "Mati";
+                    int i = 0;
+                    while (i < nimed.Length)
+                    {
+                        if (nimed[i].StartsWith("A"))
+                        {
+                            Console.WriteLine($"Tere, {nimed[i]}!");
+                        }
+                        i++;
+                    }
+                    for (int j = 0; j < nimed.Length; j++)
+                    {
+                        Console.WriteLine($"Indeks: {j}, Nimi: {nimed[j]}");
+                    }
+                    foreach (string nimi1 in nimed)
+                    {
+                        Console.WriteLine(nimi1.ToLower());
+                    }
+                    i = 0;
+                    do
+                    {
+                        if (nimed[i] == "Mati")
+                        {
+                            Console.WriteLine("Leidsin Mati! ");
+                            break;
+                        }
+                        Console.WriteLine($"Tere, {nimed[i]}!");
+                        i++;
+                    } while (i < nimed.Length);
                 }
-                i++;
             }
-                for (int j = 0; j < nimed.Length; j++)
+            catch (Exception e)
             {
-                Console.WriteLine($"Indeks: {j}, Nimi: {nimed[j]}");
+                Console.WriteLine(e);
             }
-                foreach (string nimi1 in nimed)
-            {
-                Console.WriteLine(nimi1.ToLower());
-            }
-            i = 0;
-            do
-            {
-                if (nimed[i] =="Mati")
-                {
-                    Console.WriteLine("Leidsin Mati! ");
-                    break;
-                }
-                Console.WriteLine($"Tere, {nimed[i]}!");
-                i++;
-            } while (i<nimed.Length);
+
         }
 
 
@@ -329,19 +353,19 @@ namespace Naidis_csharp
             int keskmine = 0;
             for (int i = 0; i < 20; i++)
             {
-                Arvud.Add(rnd.Next(1,21));
+                Arvud.Add(rnd.Next(1, 21));
             }
             for (int i = 0; i < Arvud.Count; i++)
             {
 
-           
+
                 if (Arvud[i] % 2 == 0)
                 {
                     summa += Arvud[i];
                 }
                 else
                 {
-                   keskmine += Arvud[i];
+                    keskmine += Arvud[i];
 
                 }
             }
