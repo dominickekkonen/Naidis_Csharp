@@ -40,12 +40,12 @@ namespace NaidisRepo.Itaalia_toit
         {
             Console.Clear();
             Console.WriteLine("Tere tulemast Itaalia restoraani!");
-            Console.WriteLine("=================================");
-            Console.WriteLine("Menüü:");
-            Console.WriteLine("=================================");
+            Console.WriteLine("--------------------------------\n");
+            Console.WriteLine("Siin on meie menüü: \n");
+            Console.WriteLine("--------------------------------\n");
             if (MenuList.Count == 0)
             {
-                Console.WriteLine("Menüü on tühi. Palun laadige andmed failist.(Valik 1)");
+                Console.WriteLine("Menüü on tühi. Laadi andmed failist");
             }
             else
             {
@@ -54,11 +54,11 @@ namespace NaidisRepo.Itaalia_toit
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Nimetus:{item.Nimetus}"); // Nimetus roheliselt 
                     Console.ResetColor();
-                    Console.WriteLine($"Koostisosad: {string.Join(", ", item.Koostisosad)}"); // Koostisosad Tavalise värviga
+                    Console.WriteLine($"Koostisosad: {string.Join(", ", item.Koostisosad)}");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Hind: {item.Hind}€"); //Hind punaselt
+                    Console.WriteLine($"Hind: {item.Hind}€");
                     Console.ResetColor();
-                    Console.WriteLine("---------------------------------");
+                    Console.WriteLine("--------------------------------");
                 }
             }
         }
@@ -75,12 +75,12 @@ namespace NaidisRepo.Itaalia_toit
                 string aine = Console.ReadLine();
                 if (string.IsNullOrEmpty(aine))
                 {
-                    break; // Lõpetame koostisosade sisestamine 
+                    break;
                 }
                 koostisosad.Add(aine);
 
             }
-            Console.Write("Sisesta hind (nt 12.99): ");
+            Console.Write("Sisesta toidu hind (nt 12.99): ");
             double hind = double.Parse(Console.ReadLine().Replace('.', ','));
             MenuList.Add(new Menu(nimetus, koostisosad, hind));
             Console.WriteLine($"Uus toit {nimetus} on menüüsse lisatud!");
@@ -105,7 +105,7 @@ namespace NaidisRepo.Itaalia_toit
         }
         public static void KustutaToit()
         {
-            Console.WriteLine("Sisesta kustutava toidu nimetus;");
+            Console.WriteLine("Sisesta toidu nimetus mida te tahate kustutada: \n");
             string nimetus = Console.ReadLine();
             Menu itemToRemove = MenuList.Find(item => item.Nimetus.Equals(nimetus, StringComparison.OrdinalIgnoreCase));
             if (itemToRemove != null)
@@ -120,7 +120,7 @@ namespace NaidisRepo.Itaalia_toit
         }
         public static void ToiduInformatsioon()
         {
-            Console.WriteLine("Sisesta otsiva toidu nimetus: ");
+            Console.WriteLine("Sisesta otsitav toidu nimetus: ");
             string nimetus = Console.ReadLine();
             Menu itemToFind = MenuList.Find(item => item.Nimetus.Equals(nimetus, StringComparison.OrdinalIgnoreCase));
             if (itemToFind != null)
