@@ -396,26 +396,29 @@ public class ulesanded
         {
             try
             {
-                List<int> hinded = new List<int>();
-                Console.Write("Sisesta õpilase nimi: ");
-                string nimi = Console.ReadLine();
-                for (int j = 0; j < 5; j++)
+                while (true)
                 {
-
-                    Console.Write("Sisesta õpilase hinded (1-5): ");
-                    int hinne = int.Parse(Console.ReadLine());
-                    if (hinne > 1 || hinne < 5)
+                    List<int> hinded = new List<int>();
+                    Console.Write("Sisesta õpilase nimi: ");
+                    string nimi = Console.ReadLine();
+                    for (int j = 0; j < 5; j++)
                     {
-                        hinded.Add(hinne);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Hinded peab olema vahemikus 1-5");
-                    }
 
+                        Console.Write("Sisesta õpilase hinded (1-5): ");
+                        int hinne = int.Parse(Console.ReadLine());
+                        if (hinne > 1 || hinne < 5)
+                        {
+                            hinded.Add(hinne);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Hinded peab olema vahemikus 1-5");
+                        }
+
+                    }
+                    opilane uus_opilane = new opilane(nimi, hinded);
+                    opilased.Add(uus_opilane);
                 }
-                opilane uus_opilane = new opilane(nimi, hinded);
-                opilased.Add(uus_opilane);
             }
 
             catch (Exception)
