@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NaidisRepo.Itaalia_toit
+namespace Naidis_csharp
 {
     public class Alamfunktsionid
     {
