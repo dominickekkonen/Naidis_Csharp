@@ -16,13 +16,11 @@ namespace Naidis_csharp
             string vastus = "";
             string pilet = "";
             string ostus = "";
-
             Console.WriteLine("sisesta oma nimi");
             nimi = Console.ReadLine();
             if (nimi.ToLower() == "juku")
             {
                 Console.WriteLine("Lähme kinno!");
-
                 while (true)
                 {
                     try
@@ -30,11 +28,9 @@ namespace Naidis_csharp
                         Console.WriteLine("sisesta oma vanus");
                         vanus = int.Parse(Console.ReadLine());
                         if (vanus > 0 && vanus < 100)
-
                         {
                             if (vanus < 6)
                             {
-
                                 pilet = "sulle on kinopilet on tasuta!";
                                 break;
                             }
@@ -59,10 +55,7 @@ namespace Naidis_csharp
                             Console.WriteLine("vanus peab olema positiivne arv ja kui < 100");
                         }
                     }
-
-
                     catch { Console.WriteLine("palun sisesta korrektne vanus"); }
-
                 }
             }
             else
@@ -78,9 +71,7 @@ namespace Naidis_csharp
             string nimi = Console.ReadLine();
             Console.WriteLine("2. sisesta oma nimi: ");
             string nimi2 = Console.ReadLine();
-
             Console.WriteLine($"{nimi} ja {nimi2} te olete pinginabrid");
-
         }
         public static void pindala()
         {
@@ -110,9 +101,8 @@ namespace Naidis_csharp
             {
                 Console.WriteLine("temperatuur on üle nulli");
             }
-
         }
-        public static void pikk()
+        public static void pikkus()
         {
             Console.WriteLine("sisesta sinu pikkus: ");
             float pikk = float.Parse(Console.ReadLine());
@@ -131,14 +121,11 @@ namespace Naidis_csharp
         }
         public static void pood()
         {
-
             string[] products = { "piim", "sai", "leib" };
             float[] prices = { 1.2f, 0.8f, 1.5f };
             float tulemus = 0;
             string ost = "";
             int mitu = 0;
-
-
             for (int i = 0; i < products.Length; i++)
             {
                 try
@@ -160,25 +147,17 @@ namespace Naidis_csharp
                         }
                     }
                 }
-
                 catch (Exception e)
                 {
                     Console.WriteLine("vale andmetüüp");
-
                 }
                 if (ost.ToLower() == "piim" || ost == "sai" || ost == "leib")
                 {
-
                     tulemus += prices[i] * mitu;
-
                 }
                 Console.WriteLine($"sa ostsid {products[i]} hinnaga {prices[i] * mitu}");
             }
             Console.WriteLine($"sa ostsid kokku {tulemus}");
-
         }
-
-
-     
     }
 }
