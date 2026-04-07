@@ -86,15 +86,22 @@ namespace Naidis_csharp
         {
             try
             {
+                Float a = 0;
+                Float b = 0;
                 while(true)
                 {
                     Console.WriteLine("Sisesta ristküliku esimene külg: ");
-                    float a = float.Parse(Console.ReadLine());
-                    Console.WriteLine("Sisesta ristküliku teine külg: ");
-                    float b = float.Parse(Console.ReadLine());
-                    float pindala = a * b;
-                    Console.WriteLine($"Ristküliku pindala on {pindala}");
+                    a = float.Parse(Console.ReadLine());
+                    Break;
                 }
+                While(true) 
+                {
+                    Console.WriteLine("Sisesta ristküliku teine külg: ");
+                    b = float.Parse(Console.ReadLine()); 
+                    Break;
+                } 
+                float pindala = a * b;
+                Console.WriteLine($"Ristküliku pindala on {pindala}"); 
             }
             catch (Exception e)
             {
