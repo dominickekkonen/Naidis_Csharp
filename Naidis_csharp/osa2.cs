@@ -94,7 +94,7 @@ namespace Naidis_csharp
                     a = float.Parse(Console.ReadLine());
                     Break;
                 }
-                While(true) 
+                while(true) 
                 {
                     Console.WriteLine("Sisesta ristküliku teine külg: ");
                     b = float.Parse(Console.ReadLine()); 
@@ -112,13 +112,14 @@ namespace Naidis_csharp
         {
             try
             {
+                float hind = 0;
                 while(true)
                 {
                     Console.WriteLine("Sisesta hind:  ");
-                    float hind = float.Parse(Console.ReadLine());
-                    hind = hind * 1.3f;
-                    Console.WriteLine($"Hind on {hind}");
+                    hind = float.Parse(Console.ReadLine());
                 }
+                hind = hind * 1.3f;
+                Console.WriteLine($"Hind on {hind}");
             }
             catch (Exception e)
             {
@@ -129,20 +130,21 @@ namespace Naidis_csharp
         {
             try
             {
+                float tem = 0;
                 while(true)
                 {
                     Console.WriteLine("sisesta temperatuur: ");
-                    float tem = float.Parse(Console.ReadLine());
-                    if (tem < 18)
-                    {
-                        Console.WriteLine("temperatuur on alla 18");
-                    }
-                    else
-                    {
-                        Console.WriteLine("temperatuur on üle nulli");
-                    }
-
+                    tem = float.Parse(Console.ReadLine());
                 }
+                if (tem < 18)
+                {
+                    Console.WriteLine("temperatuur on alla 18");
+                }
+                else
+                {
+                    Console.WriteLine("temperatuur on üle nulli");
+                }
+
             }
             catch(Exception e)
             {
