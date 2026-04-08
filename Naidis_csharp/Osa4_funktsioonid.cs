@@ -1,12 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Naidis_csharp
 {
     internal class Osa4_funktsioonid
@@ -31,29 +22,24 @@ namespace Naidis_csharp
         {
             try
             {
-                while(true)
+                string path = @"..\..\..\Kuud.txt";//@"..\..\..\Kuud.txt"
+                Console.WriteLine("Sisesta mingi tekst: ");
+                string lause = Console.ReadLine();
+                using (StreamWriter sw = new StreamWriter(path, true))
                 {
-                    string path = @"..\..\..\Kuud.txt"; //@"..\..\..\Kuud.txt"
-                    StreamWriter text = new StreamWriter(path, true); // true = lisa lõppu
-                    Console.WriteLine("Sisesta mingi tekst: ");
-                    string lause = Console.ReadLine();
-                    text.WriteLine(lause);
-                    text.Close();
-                    using (StreamWriter sw = new StreamWriter(path, true))
-                    {
-                        sw.WriteLine("Midagi");
-                    } // Fail suletakse automaatselt siin
+                    sw.WriteLine(lause);
                 }
+                Console.WriteLine("Uued laused on lisatud");
+
             }
             catch (Exception e)
             {
                 Console.WriteLine("Mingi viga failiga");
             }
-           
+
         }
         public static void Faili_lugemine()
         {
-
             try
             {
                 string path = @"..\..\..\Kuud.txt";
@@ -70,7 +56,7 @@ namespace Naidis_csharp
 
         public static void Ridade_lugemine(string file)
         {
-            
+
             List<string> kuude_list = new List<string>();
             try
             {
@@ -79,12 +65,10 @@ namespace Naidis_csharp
                 foreach (string rida in File.ReadAllLines(path))
                 {
                     kuude_list.Add(rida);
-
                 }
                 foreach (string i in kuude_list) Console.WriteLine(i);
-                
             }
-            
+
             catch (Exception)
             {
                 Console.WriteLine("Viga failiga!");
@@ -93,59 +77,54 @@ namespace Naidis_csharp
         }
         public static List<string> Ridade_lugemine_listiks(string file)
         {
-
             List<string> kuude_list = new List<string>();
             try
             {
-
                 string path = @$"..\..\..\{file}";
-                foreach (string rida in File.ReadAllLines(path))
+                if (File.Exists(path))
                 {
-                    kuude_list.Add(rida);
-
+                    // ReadAllLines handles the loop for you internally
+                    string[] ridad = File.ReadAllLines(path);
+                    kuude_list.AddRange(ridad);
                 }
-                
-
+                else
+                {
+                    // This prevents the "nothing happens" problem
+                    Console.WriteLine($"VIGA: Faili ei leitud! Otsisin siit: {path}");
+                }
             }
-
             catch (Exception)
             {
                 Console.WriteLine("Viga failiga!");
             }
             return kuude_list;
-          
-
         }
         public static List<string> Listi_muutmine_kuvamine()
         {
             try
             {
-                while(true)
+                while (true)
                 {
-
                     foreach (string k in kuude_list)
                     {
                         Console.WriteLine(k);
                     }
-
-                    Console.WriteLine("sisesta kuu kustutamiseks");
-
+                    Console.Write("\nSisesta mida sa tahad kustuta: ");
                     string kuu = Console.ReadLine();
                     kuude_list.Remove($"{kuu}");
-
-                    // Muuda esimest elementi
                     if (kuude_list.Count > 0)
-                        kuude_list[0] = "Veeel kuuu";
-
+                    {
+                        kuude_list[0] = "Midagi oli siin";
+                    }
                     Console.WriteLine("--------------Kustutasime kuu-----------");
-
                     foreach (string k in kuude_list)
                     {
                         Console.WriteLine(k);
                     }
+                    break;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -156,19 +135,30 @@ namespace Naidis_csharp
         {
             try
             {
-                while(true)
-                {
-                    kuude_list = Ridade_lugemine_listiks("Kuud.txt");
-                    Console.WriteLine("Sisesta kuu nimi, mida otsida:");
-                    string otsitav = Console.ReadLine();
+                string otsitav = "";
+                List<string> kuude_list = Ridade_lugemine_listiks("Kuud.txt");
 
+                if (kuude_list == null || kuude_list.Count == 0)
+                {
+                    Console.WriteLine("Nimekiri on tühi. Ei saa midagi otsida.");
+                    return;
+                }
+                while (true)
+                {
+                    Console.Write("Sisesta kuu nimi, mida tahad otsida: ");
+                    otsitav = Console.ReadLine();
                     if (kuude_list.Contains(otsitav))
-                        Console.WriteLine("Kuu " + otsitav + " on olemas.");
+                    {
+                        Console.WriteLine($"Kuu {otsitav} on olemas.");
+                        break;
+                    }
                     else
+                    {
                         Console.WriteLine("Sellist kuud pole.");
+                    }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
